@@ -153,5 +153,66 @@ namespace Collections
 
     */
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //displays the information about the company and application
+            AboutForm information = new AboutForm();
+            information.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //terminate the application
+            Application.Exit();
+        }
+
+        private void addCoffeeFlavourToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //add a new coffee flavour if it already does not exist
+
+            Boolean itemFound = false;
+            int itemIndex = 0;
+
+            //if the user has provided a coffee flavour
+            if(coffeeComboBox.Text.Trim() != String.Empty )
+            {
+                //does the flavout already exist
+                while(!itemFound && itemIndex < coffeeComboBox.Items.Count )
+                {
+                    if(coffeeComboBox.Text.Trim().ToUpper() == coffeeComboBox.Items[itemIndex].ToString().Trim().ToUpper())
+                    {
+                        itemFound = true;
+                        
+                    }//flavour found
+                    else
+                    {
+                        itemIndex++;
+                    }
+
+                }//while
+
+                //if flavour was found
+                if(itemFound)
+                {
+                    MessageBox.Show("Duplicate Flavour cannot be added", "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    coffeeComboBox.Text = String.Empty;
+                    coffeeComboBox.Focus();
+                }
+                else
+                {
+                    //add the flavour
+                    coffeeComboBox.Items.Add(coffeeComboBox.Text);
+                    coffeeComboBox.Text = String.Empty; 
+                }
+
+            }//if flavour provided
+            else
+            {
+                MessageBox.Show("Please provide a coffee flavour to add", "Missing Data",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                coffeeComboBox.Focus();
+            }
+        }
     }
 }

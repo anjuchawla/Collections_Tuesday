@@ -117,14 +117,14 @@
             // printAllToolStripMenuItem
             // 
             this.printAllToolStripMenuItem.Name = "printAllToolStripMenuItem";
-            this.printAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.printAllToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.printAllToolStripMenuItem.Text = "&Print All";
             this.printAllToolStripMenuItem.Click += new System.EventHandler(this.printAllToolStripMenuItem_Click);
             // 
             // previewAllToolStripMenuItem
             // 
             this.previewAllToolStripMenuItem.Name = "previewAllToolStripMenuItem";
-            this.previewAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.previewAllToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.previewAllToolStripMenuItem.Text = "Pre&view All";
             this.previewAllToolStripMenuItem.Click += new System.EventHandler(this.previewAllToolStripMenuItem_Click);
             // 
@@ -138,6 +138,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
             this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -155,6 +156,7 @@
             this.addCoffeeFlavourToolStripMenuItem.Name = "addCoffeeFlavourToolStripMenuItem";
             this.addCoffeeFlavourToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
             this.addCoffeeFlavourToolStripMenuItem.Text = "&Add Coffee Flavour";
+            this.addCoffeeFlavourToolStripMenuItem.Click += new System.EventHandler(this.addCoffeeFlavourToolStripMenuItem_Click);
             // 
             // removeCoffeeFlavourToolStripMenuItem
             // 
@@ -187,6 +189,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.aboutToolStripMenuItem.Text = "&About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // label1
             // 

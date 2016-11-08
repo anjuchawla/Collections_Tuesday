@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoffeeSyrupForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printSelectedFlavoursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +50,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.printAllDocument = new System.Drawing.Printing.PrintDocument();
+            this.printSelectedDocument = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.coffeeComboBox = new System.Windows.Forms.ComboBox();
+            this.syrupListBox = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,12 +96,14 @@
             this.printSelectedToolStripMenuItem.Name = "printSelectedToolStripMenuItem";
             this.printSelectedToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.printSelectedToolStripMenuItem.Text = "&Print Selected";
+            this.printSelectedToolStripMenuItem.Click += new System.EventHandler(this.printSelectedToolStripMenuItem_Click);
             // 
             // previewSelectedToolStripMenuItem
             // 
             this.previewSelectedToolStripMenuItem.Name = "previewSelectedToolStripMenuItem";
             this.previewSelectedToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.previewSelectedToolStripMenuItem.Text = "Preview &Selected";
+            this.previewSelectedToolStripMenuItem.Click += new System.EventHandler(this.previewSelectedToolStripMenuItem_Click);
             // 
             // printAllFlavoursToolStripMenuItem
             // 
@@ -109,14 +117,16 @@
             // printAllToolStripMenuItem
             // 
             this.printAllToolStripMenuItem.Name = "printAllToolStripMenuItem";
-            this.printAllToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.printAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.printAllToolStripMenuItem.Text = "&Print All";
+            this.printAllToolStripMenuItem.Click += new System.EventHandler(this.printAllToolStripMenuItem_Click);
             // 
             // previewAllToolStripMenuItem
             // 
             this.previewAllToolStripMenuItem.Name = "previewAllToolStripMenuItem";
-            this.previewAllToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.previewAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.previewAllToolStripMenuItem.Text = "Pre&view All";
+            this.previewAllToolStripMenuItem.Click += new System.EventHandler(this.previewAllToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -175,7 +185,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.aboutToolStripMenuItem.Text = "&About";
             // 
             // label1
@@ -216,11 +226,62 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Anju Chawla";
             // 
+            // printAllDocument
+            // 
+            this.printAllDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printAllDocument_PrintPage);
+            // 
+            // printSelectedDocument
+            // 
+            this.printSelectedDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printSelectedDocument_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // coffeeComboBox
+            // 
+            this.coffeeComboBox.FormattingEnabled = true;
+            this.coffeeComboBox.Items.AddRange(new object[] {
+            "Chocolate Almond",
+            "Espresso Roast",
+            "Jamaica Blue Mountain",
+            "Kona Blend",
+            "Vanilla Nut"});
+            this.coffeeComboBox.Location = new System.Drawing.Point(86, 143);
+            this.coffeeComboBox.Name = "coffeeComboBox";
+            this.coffeeComboBox.Size = new System.Drawing.Size(180, 24);
+            this.coffeeComboBox.Sorted = true;
+            this.coffeeComboBox.TabIndex = 5;
+            // 
+            // syrupListBox
+            // 
+            this.syrupListBox.FormattingEnabled = true;
+            this.syrupListBox.ItemHeight = 16;
+            this.syrupListBox.Items.AddRange(new object[] {
+            "(None)",
+            "Chocolate",
+            "Hazel Nut",
+            "Irish Creme",
+            "Orange "});
+            this.syrupListBox.Location = new System.Drawing.Point(424, 143);
+            this.syrupListBox.Name = "syrupListBox";
+            this.syrupListBox.Size = new System.Drawing.Size(136, 100);
+            this.syrupListBox.Sorted = true;
+            this.syrupListBox.TabIndex = 6;
+            // 
             // CoffeeSyrupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 312);
+            this.Controls.Add(this.syrupListBox);
+            this.Controls.Add(this.coffeeComboBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -262,6 +323,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Drawing.Printing.PrintDocument printAllDocument;
+        private System.Drawing.Printing.PrintDocument printSelectedDocument;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.ComboBox coffeeComboBox;
+        private System.Windows.Forms.ListBox syrupListBox;
     }
 }
 

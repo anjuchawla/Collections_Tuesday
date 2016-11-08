@@ -163,18 +163,21 @@
             this.removeCoffeeFlavourToolStripMenuItem.Name = "removeCoffeeFlavourToolStripMenuItem";
             this.removeCoffeeFlavourToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
             this.removeCoffeeFlavourToolStripMenuItem.Text = "&Remove Coffee Flavour";
+            this.removeCoffeeFlavourToolStripMenuItem.Click += new System.EventHandler(this.removeCoffeeFlavourToolStripMenuItem_Click);
             // 
             // clearCoffeeListToolStripMenuItem
             // 
             this.clearCoffeeListToolStripMenuItem.Name = "clearCoffeeListToolStripMenuItem";
             this.clearCoffeeListToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
             this.clearCoffeeListToolStripMenuItem.Text = "&Clear Coffee List";
+            this.clearCoffeeListToolStripMenuItem.Click += new System.EventHandler(this.clearCoffeeListToolStripMenuItem_Click);
             // 
             // countCoffeeListToolStripMenuItem
             // 
             this.countCoffeeListToolStripMenuItem.Name = "countCoffeeListToolStripMenuItem";
             this.countCoffeeListToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
             this.countCoffeeListToolStripMenuItem.Text = "Count Coffee &List";
+            this.countCoffeeListToolStripMenuItem.Click += new System.EventHandler(this.countCoffeeListToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -187,7 +190,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 

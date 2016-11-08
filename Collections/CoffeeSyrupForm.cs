@@ -27,7 +27,7 @@ namespace Collections
 
         private void printSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
+            
             //print selected flavours
 
             if (syrupListBox.SelectedIndex == -1)
@@ -44,12 +44,12 @@ namespace Collections
                 MessageBox.Show("Please select a coffee flavour", "Print Selection",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 coffeeComboBox.Focus();
-            }*/
+            }
         }
 
         private void previewSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
+            
             if (syrupListBox.SelectedIndex == -1)
             {
                 syrupListBox.SelectedIndex = 0;
@@ -65,7 +65,7 @@ namespace Collections
                 MessageBox.Show("Please select a coffee flavour", "Print Selection",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 coffeeComboBox.Focus();
-            }*/
+            }
         }
 
         private void printAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace Collections
 
         private void printAllDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            /*
+            
             // Handle printing and print previews when printing all.
 
             Font printFont = new Font("Arial", 12);
@@ -94,13 +94,13 @@ namespace Collections
             float verticalPrintLocationFloat = e.MarginBounds.Top;
             string printLineString;
 
-            //Print the heading
+            //Print the heading for coffee flavours
             Font headingFont = new Font("Arial", 14, FontStyle.Bold);
-            e.Graphics.DrawString("Flavours", headingFont,
+            e.Graphics.DrawString("Coffee Flavours", headingFont,
                 Brushes.Black, horizontalPrintLocationFloat,
                 verticalPrintLocationFloat);
-
-            // Loop through the entire list.
+           
+            // Show all coffee flavours
             //for (int ListIndexInteger = 0; ListIndexInteger < CoffeeComboBox.Items.Count - 1; ListIndexInteger++)
             foreach (Object flavor in coffeeComboBox.Items)
             {
@@ -108,19 +108,42 @@ namespace Collections
                 verticalPrintLocationFloat += lineHeightFloat;
 
                 //Set up a line
-                //PrintLineString = CoffeeComboBox.Items[ListIndexInteger].ToString();
+                //printLineString = CoffeeComboBox.Items[ListIndexInteger].ToString();
                 printLineString = flavor.ToString();
                 //Send the line to the graphics page object.
                 e.Graphics.DrawString(printLineString, printFont,
                     Brushes.Black, horizontalPrintLocationFloat,
                     verticalPrintLocationFloat);
             } // end for
-            */
+
+            //heading for syrup flavours
+            verticalPrintLocationFloat += lineHeightFloat*2;
+
+            e.Graphics.DrawString("Syrup Flavours", headingFont,
+              Brushes.Black, horizontalPrintLocationFloat,
+              verticalPrintLocationFloat);
+
+            //print all syrup flavours
+            foreach (Object flavor in syrupListBox.Items)
+            {
+                //increment the  Y position for the next line.
+                verticalPrintLocationFloat += lineHeightFloat;
+
+                //Set up a line
+                printLineString = flavor.ToString();
+                //Send the line to the graphics page object.
+                e.Graphics.DrawString(printLineString, printFont,
+                    Brushes.Black, horizontalPrintLocationFloat,
+                    verticalPrintLocationFloat);
+            } // end for
+
+
+
         }
 
         private void printSelectedDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            /*
+            
             // Handle printing and print previews when printing selected items.
 
             Font printFont = new Font("Arial", 12);
@@ -151,7 +174,7 @@ namespace Collections
                 Brushes.Black, horizontalPrintLocationFloat,
                   verticalPrintLocationFloat);
 
-    */
+    
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -213,6 +236,90 @@ namespace Collections
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 coffeeComboBox.Focus();
             }
+        }
+
+        private void removeCoffeeFlavourToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //remove an existing coffee flavour from the list
+
+
+            //user has put in the coffee flavour text and not a selection from the list
+            if(coffeeComboBox.SelectedIndex == -1 && coffeeComboBox.Text != String.Empty )
+            {
+                //block variables
+                Boolean itemFound = false;
+                int itemIndex = 0;
+
+                while (!itemFound && itemIndex < coffeeComboBox.Items.Count)
+                {
+                    if (coffeeComboBox.Text.Trim().ToUpper() == coffeeComboBox.Items[itemIndex].ToString().Trim().ToUpper())
+                    {
+                        itemFound = true;
+
+                    }//flavour found
+                    else
+                    {
+                        itemIndex++;
+                    }
+
+                }//while
+
+                //if flavour found
+                if(itemFound)
+                {
+                    coffeeComboBox.Items.Remove(coffeeComboBox.Text);
+                    //coffeeComboBox.Items.RemoveAt(itemIndex);
+                    coffeeComboBox.Text = String.Empty;
+                    coffeeComboBox.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Coffee flavour to delete does not exist",
+                   "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    coffeeComboBox.Text = String.Empty;
+                    coffeeComboBox.Focus();
+                }
+
+            }
+            else if(coffeeComboBox.SelectedIndex != -1)  //user has made a selection
+            {
+                //coffeeComboBox.Items.Remove(coffeeComboBox.Text);
+                //coffeeComboBox.Items.Remove(coffeeComboBox.Items[coffeeComboBox.SelectedIndex]);
+                coffeeComboBox.Items.RemoveAt(coffeeComboBox.SelectedIndex);
+                coffeeComboBox.Text = String.Empty;
+                coffeeComboBox.Focus();
+            }
+            else //no selection and no text
+            {
+                MessageBox.Show("Please select or provide the coffee flavour to delete",
+                    "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                coffeeComboBox.Focus();
+            }
+        }
+
+        private void clearCoffeeListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //removes all coffee flavours after user confirms
+
+            DialogResult confirm = MessageBox.Show("Delete all coffee flavours?", "Clear Coffee List",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            //if user chooses yes
+            if(confirm == DialogResult.Yes)
+            {
+                coffeeComboBox.Items.Clear();
+            }
+        }
+
+        private void countCoffeeListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //display the available number of coffee flavours
+
+            String message = "The number of available coffee flavours: " + coffeeComboBox.Items.Count;
+
+            MessageBox.Show(message, "Coffee Flavours", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            
         }
     }
 }
